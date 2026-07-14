@@ -83,21 +83,12 @@ a {
 }
 
 .brand-mark {
-  display: grid;
-  place-items: center;
   width: 34px;
   height: 34px;
-  border: 2px solid var(--ink);
-  border-radius: 50%;
-}
-
-.brand-mark::before {
-  width: 12px;
-  height: 12px;
-  content: "";
-  border-radius: 50%;
-  background: var(--signal);
-  box-shadow: 12px -6px 0 var(--aqua), -9px 9px 0 var(--gold);
+  flex: 0 0 34px;
+  border-radius: 9px;
+  background: url("/assets/app-icon-192.png") center / cover no-repeat;
+  box-shadow: 0 5px 14px rgba(25, 15, 45, 0.22);
 }
 
 .nav {
