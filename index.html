@@ -1,115 +1,220 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Orbit Down - Free Countdown App For Apple Devices</title>
-  <meta name="description" content="Orbit Down is a free, private, ad-free countdown app for iPhone, iPad, and Mac with customizable widgets, natural-language creation, and Apple integrations.">
+  <meta name="theme-color" content="#090b15">
+  <title>Orbit Down — Beautiful Countdowns for iPhone, iPad &amp; Mac</title>
+  <meta name="description" content="Make every moment worth anticipating. Orbit Down is a free, private, ad-free countdown app for iPhone, iPad, and Mac with beautiful widgets and deep customization.">
   <link rel="canonical" href="https://orbitdown.zelnick.pw/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Orbit Down — Make the moments ahead feel closer">
+  <meta property="og:description" content="Beautiful, private countdowns and widgets for iPhone, iPad, and Mac.">
+  <meta property="og:image" content="https://orbitdown.zelnick.pw/assets/product/mac-library.png">
+  <meta property="og:url" content="https://orbitdown.zelnick.pw/">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="preload" as="image" href="assets/product/mac-library.png" fetchpriority="high">
+  <link rel="stylesheet" href="styles.css?v=20260714-2">
+  <script defer src="site.js?v=20260714-2"></script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Orbit Down",
+      "applicationCategory": "LifestyleApplication",
+      "operatingSystem": "iOS, iPadOS, macOS",
+      "description": "A free, private, ad-free countdown app with customizable widgets.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+      "url": "https://orbitdown.zelnick.pw/"
+    }
+  </script>
 </head>
-<body>
-  <header class="site-header">
-    <a class="brand" href="/">
-      <span class="brand-mark" aria-hidden="true"></span>
+<body class="home-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" data-header>
+    <a class="brand" href="/" aria-label="Orbit Down home">
+      <img class="brand-mark" src="/assets/app-icon-192.png" width="38" height="38" alt="">
       <span>Orbit Down</span>
     </a>
     <nav class="nav" aria-label="Primary">
-      <a href="#features">Features</a>
+      <a href="#experience">Experience</a>
       <a href="#widgets">Widgets</a>
+      <a href="#privacy">Privacy</a>
       <a href="/support/">Support</a>
-      <a href="/privacy/">Privacy</a>
     </nav>
+    <a class="header-cta" href="#film">Watch the film <span aria-hidden="true">↘</span></a>
   </header>
 
-  <main>
-    <section class="hero">
-      <div class="hero-copy">
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-aurora" aria-hidden="true"></div>
+      <div class="hero-grid container">
+        <div class="hero-copy reveal" data-reveal>
+          <p class="eyebrow"><span class="live-dot" aria-hidden="true"></span> Countdown beautifully</p>
+          <h1 id="hero-title">Make the moments ahead <em>feel closer.</em></h1>
+          <p class="lede">Orbit Down turns every trip, birthday, launch, and personal milestone into a beautiful part of your day—across iPhone, iPad, Mac, and your widgets.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#experience">Explore Orbit Down <span aria-hidden="true">↓</span></a>
+            <a class="button ghost" href="#film"><span class="play-icon" aria-hidden="true">▶</span> Watch product film</a>
+          </div>
+          <ul class="hero-promises">
+            <li>Free</li>
+            <li>Ad-free</li>
+            <li>No account</li>
+          </ul>
+        </div>
+
+        <div class="product-stage reveal" data-reveal data-delay="1" role="group" aria-label="Orbit Down shown on Mac and iPhone">
+          <div class="orbit orbit-one" aria-hidden="true"></div>
+          <div class="orbit orbit-two" aria-hidden="true"></div>
+          <figure class="device device-mac" data-tilt>
+            <div class="mac-bar"><i></i><i></i><i></i><span>Orbit Down</span></div>
+            <img src="assets/product/mac-library.png" alt="Orbit Down library and countdown detail on Mac" width="1920" height="1080">
+          </figure>
+          <figure class="device device-phone">
+            <div class="phone-sensor" aria-hidden="true"></div>
+            <img src="assets/product/iphone-library.png" alt="Orbit Down countdown library on iPhone" width="1290" height="2796">
+          </figure>
+          <div class="floating-note note-one"><span>✦</span> No ads. Ever.</div>
+          <div class="floating-note note-two"><strong>17</strong><span>days to go</span></div>
+        </div>
+      </div>
+      <div class="hero-foot container" role="group" aria-label="Availability">
+        <span>Made for the Apple devices you already use</span>
+        <div><b>iPhone</b><b>iPad</b><b>Mac</b><b>Widgets</b><b>Shortcuts</b></div>
+      </div>
+    </section>
+
+    <section id="film" class="film-section section-pad">
+      <div class="container">
+        <div class="section-intro split-intro reveal" data-reveal>
+          <div>
+            <p class="eyebrow">Meet Orbit Down</p>
+            <h2>A calmer way to look forward.</h2>
+          </div>
+          <p>Not another dashboard to maintain. A focused, personal place for the dates that matter—and a glanceable layer across every screen.</p>
+        </div>
+        <div class="film-frame reveal" data-reveal data-delay="1">
+          <video controls playsinline preload="metadata" poster="assets/product/mac-widgets.png" aria-label="Orbit Down product film">
+            <source src="assets/video/orbit-down-launch.mp4" type="video/mp4">
+          </video>
+          <div class="film-label"><span>Orbit Down film</span><span>24 seconds</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="experience section-pad">
+      <div class="container">
+        <div class="section-intro reveal" data-reveal>
+          <p class="eyebrow">Designed around your life</p>
+          <h2>From a thought to a countdown in seconds.</h2>
+          <p>Start naturally, shape every detail, then put the result exactly where you need it.</p>
+        </div>
+
+        <div class="feature-story">
+          <article class="story-card story-copy reveal" data-reveal>
+            <span class="story-index">01</span>
+            <div>
+              <p class="mini-label">Quick Add</p>
+              <h3>Say it the way you think it.</h3>
+              <p>“Lisbon next Friday at 6pm.” Orbit Down understands natural dates, recurring moments, and multi-line lists—then lets you review before saving.</p>
+              <ul class="check-list">
+                <li>Natural-language dates</li>
+                <li>Repeat rules and reminders</li>
+                <li>Calendar and Reminders import</li>
+              </ul>
+            </div>
+          </article>
+          <figure class="story-visual quick-visual reveal" data-reveal data-delay="1">
+            <img src="assets/product/mac-quick-add.png" alt="Quick Add in Orbit Down on Mac" loading="lazy" width="1920" height="1080">
+            <div class="typed-prompt" aria-hidden="true"><span>Weekend in Copenhagen</span><i></i></div>
+          </figure>
+
+          <figure class="story-visual style-visual reveal" data-reveal>
+            <img src="assets/product/ipad-library.png" alt="Custom countdown detail in Orbit Down on iPad" loading="lazy" width="2064" height="2752">
+            <div class="palette-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          </figure>
+          <article class="story-card story-copy reveal" data-reveal data-delay="1">
+            <span class="story-index">02</span>
+            <div>
+              <p class="mini-label">Make it yours</p>
+              <h3>Every countdown can feel different.</h3>
+              <p>Photos, symbols, palettes, typography, progress styles, milestones, notes, and completion behavior—designed to personalize, never complicate.</p>
+              <div class="stat-row"><strong>Deep</strong><span>customization without the clutter</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="widgets" class="widgets section-pad">
+      <div class="container widgets-grid">
+        <div class="widgets-copy reveal" data-reveal>
+          <p class="eyebrow">Widgets that belong</p>
+          <h2>Your next moment, already in view.</h2>
+          <p>Home Screen, Lock Screen, StandBy, iPad, and Mac widgets inherit your countdown’s look and open straight to the detail that matters.</p>
+          <div class="widget-facts">
+            <div><strong>3</strong><span>widget families</span></div>
+            <div><strong>1</strong><span>shared visual language</span></div>
+          </div>
+        </div>
+        <div class="widget-stack reveal" data-reveal data-delay="1" role="group" aria-label="Orbit Down widget gallery">
+          <figure class="widget-shot widget-shot-one"><img src="assets/product/mac-widgets.png" alt="Orbit Down widgets on Mac" loading="lazy" width="1920" height="1080"></figure>
+          <figure class="widget-shot widget-shot-two"><img src="assets/product/iphone-widgets.png" alt="Orbit Down widget gallery on iPhone" loading="lazy" width="1290" height="2796"></figure>
+          <div class="widget-badge"><span>Live</span><b>Next trip</b><strong>17d 6h</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="privacy" class="privacy-section section-pad">
+      <div class="container privacy-panel reveal" data-reveal>
+        <div class="privacy-orbit" aria-hidden="true"><span>●</span><i></i><b></b></div>
+        <div class="privacy-copy">
+          <p class="eyebrow">Private by design</p>
+          <h2>Your moments are yours.</h2>
+          <p>No ads. No tracking. No developer-operated account or analytics backend. Your countdowns stay on your device by default, with optional private iCloud sync.</p>
+          <a class="text-link" href="/privacy/">Read the plain-language privacy policy <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="privacy-proof" role="group" aria-label="Privacy promises">
+          <div><span aria-hidden="true">✓</span><strong>No tracking</strong><small>Across apps or websites</small></div>
+          <div><span aria-hidden="true">✓</span><strong>No ads</strong><small>And no hidden subscription</small></div>
+          <div><span aria-hidden="true">✓</span><strong>Your control</strong><small>Export, sync, or erase</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing section-pad">
+      <div class="closing-orbits" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="container closing-copy reveal" data-reveal>
+        <img src="/assets/app-icon-192.png" width="76" height="76" alt="Orbit Down app icon">
         <p class="eyebrow">Free. Private. Ad-free.</p>
-        <h1>Orbit Down</h1>
-        <p class="lede">A highly customizable countdown app for iPhone, iPad, and Mac, built for the moments you want visible without opening the app.</p>
-        <div class="hero-actions">
-          <a class="button" href="/support/">Get Support</a>
-          <a class="button secondary" href="/privacy/">Read Privacy Policy</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="features" class="band">
-      <div class="section-head">
-        <p class="eyebrow">Countdowns That Fit Your Life</p>
-        <h2>Track anything worth looking forward to.</h2>
-        <p>Orbit Down helps you create, organize, style, and share countdowns for trips, launches, birthdays, exams, bills, holidays, goals, and the everyday deadlines that deserve a clean place to live.</p>
-      </div>
-      <div class="feature-grid">
-        <article class="feature">
-          <h3>Natural-language creation</h3>
-          <p>Type phrases like "Dinner tomorrow at noon", "launch brief by EOD", "payday every other Friday", or paste a multi-line list and review each countdown before saving.</p>
-        </article>
-        <article class="feature">
-          <h3>Deep customization</h3>
-          <p>Choose layouts, palettes, symbols, typography, progress styles, milestones, business-day units, reminders, repeat rules, and completion behavior.</p>
-        </article>
-        <article class="feature">
-          <h3>Apple app import</h3>
-          <p>Import Calendar events, dated Reminders, Contacts birthdays and anniversaries, and calendar invite files while keeping editable details.</p>
-        </article>
-        <article class="feature">
-          <h3>No account required</h3>
-          <p>Use the app without ads, subscriptions, tracking, analytics SDKs, or a developer-operated backend. Optional iCloud sync uses your Apple ID.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="widgets" class="band alt">
-      <div class="section-head">
-        <p class="eyebrow">Widgets First</p>
-        <h2>Put the countdown where you already look.</h2>
-        <p>Single countdown, upcoming list, and collection dashboard widgets are designed for Home Screen, Lock Screen, StandBy, iPad, and Mac surfaces where supported.</p>
-      </div>
-      <div class="shot-grid">
-        <figure class="shot-panel tall">
-          <img src="assets/screenshots/iphone-library.png" alt="Orbit Down iPhone library showing countdowns, search, filters, and cards.">
-        </figure>
-        <figure class="shot-panel">
-          <img src="assets/screenshots/ipad-library.png" alt="Orbit Down iPad library and detail screen with widget gallery previews.">
-        </figure>
-      </div>
-    </section>
-
-    <section class="band">
-      <div class="section-head">
-        <p class="eyebrow">Built For App Store Review</p>
-        <h2>Clear promises, local-first behavior.</h2>
-        <p>Orbit Down is designed around simple privacy rules: no ads, no account, no analytics SDK, no developer-operated backend, and no third-party tracking.</p>
-      </div>
-      <div class="proof-list">
-        <div class="proof">
-          <strong>No ads</strong>
-          <span>No ad SDKs, no ad network calls, and no paid upsell hiding the useful parts.</span>
-        </div>
-        <div class="proof">
-          <strong>No tracking</strong>
-          <span>No cross-app tracking and no analytics SDK collecting developer-operated usage data.</span>
-        </div>
-        <div class="proof">
-          <strong>User controlled</strong>
-          <span>Optional iCloud sync, exportable backups, portable countdown files, and an Erase Local Data control.</span>
+        <h2>Give the future something to look like.</h2>
+        <p>Orbit Down is coming to the App Store for iPhone, iPad, and Mac.</p>
+        <div class="closing-actions">
+          <a class="button primary" href="/support/">Get launch support</a>
+          <a class="button ghost" href="#main">Back to the top ↑</a>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <span>Orbit Down for iPhone, iPad, and Mac.</span>
+    <div class="footer-brand">
+      <img src="/assets/app-icon-192.png" width="42" height="42" alt="">
+      <div><strong>Orbit Down</strong><span>Moments worth seeing.</span></div>
+    </div>
     <nav aria-label="Footer">
+      <a href="#experience">Experience</a>
+      <a href="#widgets">Widgets</a>
       <a href="/support/">Support</a>
       <a href="/privacy/">Privacy</a>
       <a href="https://github.com/Z3lnick/orbitdown/issues/new">Contact</a>
     </nav>
+    <p>Made for iPhone, iPad, and Mac.</p>
   </footer>
 </body>
 </html>
