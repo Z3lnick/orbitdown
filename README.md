@@ -15,12 +15,12 @@ The homepage is a zero-build static launch site with:
 
 - responsive desktop and mobile product staging;
 - accessible, reduced-motion-aware scroll reveals;
-- real iPhone, iPad, Mac, and widget product imagery;
-- the 24-second HyperFrames product film at `assets/video/orbit-down-launch.mp4`;
+- current iPhone, iPad, Mac, and widget product imagery with optimized WebP delivery;
+- an Apple-style editorial design built around the real product rather than mockups;
 - Open Graph, Twitter Card, canonical, manifest, and SoftwareApplication metadata;
 - versioned CSS and JavaScript URLs to prevent stale deployment caches.
 
-The editable HyperFrames source lives in `hyperframes/orbit-down-launch/`. Run its checks and rebuild the film with:
+The editable 24-second HyperFrames product-film source lives in `hyperframes/orbit-down-launch/`. Its final render is intentionally kept separate from the website release until the visual preview is approved. After approval, run its checks and rebuild the film with:
 
 ```sh
 cd hyperframes/orbit-down-launch

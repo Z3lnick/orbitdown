@@ -1,30 +1,26 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=1920, height=1080" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080">
     <title>Orbit Down — Product Film</title>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
     <style>
-      * {
-        box-sizing: border-box;
-      }
-      html,
-      body {
+      * { box-sizing: border-box; }
+      html, body {
         margin: 0;
         width: 1920px;
         height: 1080px;
         overflow: hidden;
-        background: #090b15;
-        font-family: Inter, sans-serif;
-        color: #f7f4f1;
+        background-color: #f5f5f7;
+        color: #101014;
+        font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif;
       }
       #root {
         position: relative;
         width: 1920px;
         height: 1080px;
         overflow: hidden;
-        background: #090b15;
       }
       .scene {
         position: absolute;
@@ -32,56 +28,31 @@
         width: 1920px;
         height: 1080px;
         overflow: hidden;
-        background-color: #090b15;
+        background-color: #f5f5f7;
       }
-      #scene2,
-      #scene3,
-      #scene4,
-      #scene5 {
-        opacity: 0;
-      }
-      .scene-content {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-        padding: 110px 140px;
-        gap: 28px;
-        box-sizing: border-box;
-      }
-      .noise {
+      #scene2, #scene3, #scene4, #scene5 { opacity: 0; }
+      .paper-dots {
         position: absolute;
         inset: 0;
-        opacity: 0.16;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");
-        pointer-events: none;
+        background-image: radial-gradient(rgba(16, 16, 20, .15) 1px, rgba(16, 16, 20, 0) 1px);
+        background-size: 9px 9px;
+        opacity: .15;
+      }
+      .hairline {
+        position: absolute;
+        height: 2px;
+        background-color: rgba(16, 16, 20, .13);
+        transform-origin: left center;
       }
       .glow {
         position: absolute;
         border-radius: 50%;
-        filter: blur(80px);
-        opacity: 0.42;
+        filter: blur(92px);
         will-change: transform, opacity;
-      }
-      .glow.coral {
-        width: 620px;
-        height: 620px;
-        background: #ff7358;
-      }
-      .glow.teal {
-        width: 560px;
-        height: 560px;
-        background: #43c9c1;
-      }
-      .glow.mint {
-        width: 520px;
-        height: 520px;
-        background: #8bd6a0;
       }
       .orbit {
         position: absolute;
-        border: 2px solid #141827;
+        border: 2px solid rgba(16, 16, 20, .11);
         border-radius: 50%;
         will-change: transform, opacity;
       }
@@ -92,878 +63,317 @@
         width: 16px;
         height: 16px;
         border-radius: 50%;
-        background: #f4b44a;
-        box-shadow: 0 0 30px #f4b44a;
+        background-color: #ff5ca8;
+        box-shadow: 0 0 30px rgba(255, 92, 168, .55);
         content: "";
       }
-      .eyebrow {
+      .label {
         margin: 0;
-        color: #8bd6a0;
+        color: #db3b86;
+        font-family: "SF Pro Text", -apple-system, sans-serif;
         font-size: 22px;
         font-weight: 700;
-        letter-spacing: 0.18em;
+        letter-spacing: .14em;
         text-transform: uppercase;
       }
-      h1,
-      h2,
-      p {
-        margin: 0;
+      h1, h2, p { margin: 0; }
+      h1, h2 {
+        font-family: "SF Pro Display", -apple-system, sans-serif;
+        font-weight: 700;
+        letter-spacing: -.07em;
       }
-      h1 {
-        max-width: 1380px;
-        font-size: 122px;
-        font-weight: 800;
-        letter-spacing: -0.065em;
-        line-height: 0.92;
-      }
-      h2 {
-        max-width: 980px;
-        font-size: 92px;
-        font-weight: 800;
-        letter-spacing: -0.06em;
-        line-height: 0.94;
-      }
-      .accent {
-        color: #ff7358;
-      }
+      h1 { font-size: 132px; line-height: .94; }
+      h2 { font-size: 94px; line-height: .92; }
+      .accent { color: #db3b86; }
       .body {
-        max-width: 760px;
-        color: #aaa9b6;
-        font-size: 28px;
-        line-height: 1.5;
+        color: #6e6e73;
+        font-size: 30px;
+        line-height: 1.4;
       }
       .app-icon {
-        border-radius: 34px;
-        box-shadow: 0 30px 90px #1a0b08;
-      }
-      #scene1 .scene-content {
-        align-items: center;
-        text-align: center;
-      }
-      #scene1 .glow {
-        top: -220px;
-        left: 650px;
-      }
-      #scene1 .orbit-a {
-        top: -360px;
-        left: 455px;
-        width: 1010px;
-        height: 1010px;
-      }
-      #scene1 .orbit-b {
-        top: -180px;
-        left: 635px;
-        width: 650px;
-        height: 650px;
-      }
-      #scene1 .app-icon {
-        width: 146px;
-        height: 146px;
-        margin-bottom: 8px;
-      }
-      #scene1 h1 {
-        max-width: 1320px;
-        font-size: 112px;
-      }
-      #scene2 {
-        background-color: #0e1220;
-      }
-      #scene2 .grid {
-        position: absolute;
-        inset: 0;
-        background-image:
-          linear-gradient(#141827 2px, rgba(20, 24, 39, 0) 2px),
-          linear-gradient(90deg, #141827 2px, rgba(20, 24, 39, 0) 2px);
-        background-size: 90px 90px;
-        opacity: 0.7;
-      }
-      #scene2 .glow {
-        right: -210px;
-        bottom: -280px;
-      }
-      #scene2 .scene-content {
-        justify-content: flex-start;
-        padding-top: 88px;
-      }
-      #scene2 .scene-title {
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-        gap: 60px;
-      }
-      #scene2 h2 {
-        max-width: 760px;
-        font-size: 76px;
-      }
-      .token-row {
-        display: flex;
-        gap: 12px;
-        padding-bottom: 8px;
-      }
-      .token {
-        padding: 13px 19px;
-        border: 2px solid #141827;
-        border-radius: 9999px;
-        background: #141827;
-        color: #f7f4f1;
-        font-size: 20px;
-        font-weight: 700;
-      }
-      .mac-frame {
-        position: relative;
-        width: 1480px;
-        height: 710px;
-        margin: 10px auto 0;
-        overflow: hidden;
-        border: 3px solid #141827;
+        display: block;
+        width: 112px;
+        height: 112px;
         border-radius: 30px;
-        background: #f7f4f1;
-        box-shadow: 0 48px 120px #090b15;
-      }
-      .mac-bar {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        height: 44px;
-        padding: 0 18px;
-        background: #aaa9b6;
-      }
-      .mac-bar i {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background: #ff7358;
-      }
-      .mac-bar i:nth-child(2) {
-        background: #f4b44a;
-      }
-      .mac-bar i:nth-child(3) {
-        background: #43c9c1;
-      }
-      .mac-frame img {
-        width: 100%;
-        height: calc(100% - 44px);
-        object-fit: cover;
-        object-position: top;
-      }
-      #scene3 .glow {
-        top: 100px;
-        left: 140px;
-      }
-      #scene3 .orbit-a {
-        right: -220px;
-        bottom: -540px;
-        width: 1000px;
-        height: 1000px;
-      }
-      #scene3 .scene-content {
-        justify-content: flex-start;
-        padding-top: 82px;
-      }
-      #scene3 .title-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-      }
-      #scene3 h2 {
-        max-width: 830px;
-        font-size: 80px;
-      }
-      .platforms {
-        display: flex;
-        gap: 22px;
-        padding-bottom: 10px;
-        color: #aaa9b6;
-        font-size: 22px;
-        font-weight: 700;
-      }
-      .device-deck {
-        position: relative;
-        flex: 1;
-        min-height: 720px;
-      }
-      .screen {
-        position: absolute;
-        overflow: hidden;
-        border: 4px solid #141827;
-        background: #f7f4f1;
-        box-shadow: 0 40px 100px #090b15;
+        box-shadow: 0 26px 64px rgba(219, 59, 134, .22);
         will-change: transform, opacity;
       }
-      .screen img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: top;
-      }
-      .screen.mac {
-        top: 80px;
-        left: 250px;
-        width: 1160px;
-        height: 650px;
-        border-radius: 28px;
-        transform: rotate(-1deg);
-      }
-      .screen.ipad {
-        top: 10px;
-        left: 60px;
-        z-index: 2;
-        width: 350px;
-        height: 520px;
-        border-radius: 30px;
-        transform: rotate(-5deg);
-      }
-      .screen.phone {
-        top: 100px;
-        right: 80px;
-        z-index: 3;
-        width: 260px;
-        height: 560px;
-        border-radius: 36px;
-        transform: rotate(5deg);
-      }
-      .accent-line {
-        width: 240px;
-        height: 8px;
-        border-radius: 9999px;
-        background: #ff7358;
-        transform-origin: left center;
-      }
-      #scene4 {
-        background-color: #0e1220;
-      }
-      #scene4 .glow {
-        top: 280px;
-        left: 700px;
-        opacity: 0.24;
-      }
-      #scene4 .ring {
+      .device {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        border: 2px solid #141827;
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-      }
-      #scene4 .ring.one {
-        width: 700px;
-        height: 700px;
-      }
-      #scene4 .ring.two {
-        width: 470px;
-        height: 470px;
-      }
-      #scene4 .ring.three {
-        width: 250px;
-        height: 250px;
-      }
-      #scene4 .core {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        z-index: 2;
-        display: grid;
-        place-items: center;
-        width: 140px;
-        height: 140px;
-        border-radius: 50%;
-        background: #8bd6a0;
-        color: #1a0b08;
-        font-size: 70px;
-        font-weight: 800;
-        box-shadow: 0 0 70px #43c9c1;
-        transform: translate(-50%, -50%);
-      }
-      .promise {
-        position: absolute;
-        z-index: 3;
-        width: 360px;
-        padding: 28px 32px;
-        border: 2px solid #141827;
-        border-radius: 24px;
-        background: #141827;
-      }
-      .promise strong {
         display: block;
-        font-size: 38px;
-        letter-spacing: -0.04em;
+        margin: 0;
+        overflow: hidden;
+        border: 8px solid #19191c;
+        background-color: #ffffff;
+        box-shadow: 0 48px 110px rgba(24, 24, 30, .24);
+        will-change: transform, opacity;
       }
-      .promise span {
-        display: block;
-        margin-top: 8px;
-        color: #aaa9b6;
-        font-size: 22px;
-      }
-      .promise.one {
-        top: 180px;
-        left: 150px;
-      }
-      .promise.two {
-        top: 180px;
-        right: 150px;
-      }
-      .promise.three {
-        right: 780px;
-        bottom: 110px;
-      }
-      #scene4 .closing-line {
+      .device img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+      .glass-chip {
         position: absolute;
-        top: 70px;
-        right: 0;
-        left: 0;
-        z-index: 3;
-        text-align: center;
-        font-size: 66px;
-        font-weight: 800;
-        letter-spacing: -0.05em;
-      }
-      #scene5 .scene-content {
+        display: flex;
         align-items: center;
-        text-align: center;
+        gap: 18px;
+        min-width: 250px;
+        padding: 20px 24px;
+        border: 2px solid rgba(255, 255, 255, .82);
+        border-radius: 24px;
+        background-color: #ffffff;
+        box-shadow: 0 26px 65px rgba(45, 38, 58, .14);
+        backdrop-filter: blur(24px);
+        will-change: transform, opacity;
       }
-      #scene5 .glow {
-        top: 240px;
-        left: 710px;
-        width: 500px;
-        height: 500px;
-        opacity: 0.28;
-      }
-      #scene5 .orbit-a {
-        top: -500px;
-        left: 280px;
-        width: 1360px;
-        height: 1360px;
-      }
-      #scene5 .orbit-b {
-        top: -260px;
-        left: 520px;
-        width: 880px;
-        height: 880px;
-      }
-      #scene5 .app-icon {
-        width: 150px;
-        height: 150px;
-        margin-bottom: 8px;
-      }
-      #scene5 h1 {
-        max-width: 1260px;
-        font-size: 126px;
-      }
-      #scene5 .body {
-        max-width: none;
-        font-size: 30px;
-      }
-      .promise-pill {
-        margin-top: 12px;
-        padding: 14px 22px;
-        border: 2px solid #141827;
-        border-radius: 9999px;
-        background: #141827;
-        color: #8bd6a0;
-        font-size: 21px;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
+      .glass-chip span { color: #4f4f55; font-size: 21px; font-weight: 600; }
+      .glass-chip strong { margin-left: auto; font-size: 31px; letter-spacing: -.04em; }
+
+      /* Scene 1 — luminous opening */
+      #scene1 .paper-dots { mask-image: linear-gradient(90deg, black, rgba(0, 0, 0, .1)); }
+      #s1-glow-pink { top: 420px; left: 760px; width: 740px; height: 560px; background-color: rgba(255, 92, 168, .46); }
+      #s1-glow-aqua { top: 120px; right: -90px; width: 560px; height: 560px; background-color: rgba(54, 215, 202, .28); }
+      #s1-orbit-a { top: -370px; right: -190px; width: 1040px; height: 1040px; }
+      #s1-orbit-b { right: 190px; bottom: -460px; width: 760px; height: 760px; }
+      #scene1 .copy { position: absolute; top: 122px; left: 112px; z-index: 5; width: 920px; }
+      #scene1 .app-icon { margin-bottom: 52px; }
+      #scene1 h1 { margin-top: 24px; }
+      #scene1 h1 span { display: block; }
+      #scene1 .body { width: 760px; margin-top: 32px; }
+      #s1-rule { left: 112px; bottom: 104px; width: 750px; }
+      #scene1 .platforms { position: absolute; left: 112px; bottom: 57px; display: flex; gap: 26px; color: #707074; font-size: 20px; font-weight: 650; }
+      #s1-ipad-frame { top: 22px; right: 102px; z-index: 2; width: 680px; height: 980px; border-radius: 44px; transform-origin: center center; }
+      #s1-phone-frame { top: 330px; right: 38px; z-index: 4; width: 288px; height: 626px; border-radius: 46px; transform-origin: center center; }
+      #s1-chip-a { top: 120px; right: 560px; z-index: 6; }
+      #s1-chip-b { right: 330px; bottom: 68px; z-index: 6; }
+
+      /* Scene 2 — Mac */
+      #scene2 { background-color: #ffffff; }
+      #scene2 .paper-dots { opacity: .1; mask-image: linear-gradient(90deg, black, rgba(0, 0, 0, 0)); }
+      #s2-glow { right: -120px; bottom: -220px; width: 720px; height: 720px; background-color: rgba(141, 114, 255, .27); }
+      #scene2 .copy { position: absolute; top: 115px; left: 104px; z-index: 5; width: 520px; }
+      #scene2 h2 { margin-top: 22px; font-size: 88px; }
+      #scene2 .body { margin-top: 27px; }
+      #s2-rule { top: 695px; left: 104px; width: 380px; }
+      #scene2 .metadata { position: absolute; left: 104px; bottom: 176px; color: #6e6e73; font-size: 20px; font-weight: 650; }
+      #s2-mac-wrap { position: absolute; top: 104px; right: -84px; z-index: 2; width: 1438px; height: 900px; will-change: transform, opacity; }
+      #s2-mac-image { width: 100%; height: 100%; border-radius: 25px; object-fit: cover; box-shadow: 0 48px 120px rgba(24, 24, 30, .22); will-change: transform; }
+      #s2-sheen { position: absolute; top: 0; bottom: 0; left: 0; z-index: 3; width: 280px; background-image: linear-gradient(105deg, rgba(255,255,255,0), rgba(255,255,255,.34), rgba(255,255,255,0)); opacity: 0; pointer-events: none; will-change: transform, opacity; }
+
+      /* Scene 3 — Quick Add */
+      #scene3 { background-color: #f5f5f7; }
+      #s3-panel { position: absolute; inset: 44px 52px; border-radius: 54px; background-color: #efe8fb; overflow: hidden; }
+      #s3-glow { top: 80px; right: 110px; width: 620px; height: 620px; background-color: rgba(255, 92, 168, .34); }
+      #s3-orbit { right: -250px; bottom: -520px; width: 1040px; height: 1040px; border-color: rgba(141, 114, 255, .22); }
+      #scene3 .copy { position: absolute; top: 164px; left: 130px; z-index: 5; width: 660px; }
+      #scene3 h2 { margin-top: 22px; }
+      #scene3 .body { width: 610px; margin-top: 28px; }
+      #s3-prompt { position: absolute; top: 704px; left: 130px; z-index: 5; display: flex; align-items: center; width: 620px; height: 82px; padding: 0 26px; border: 2px solid rgba(16,16,20,.09); border-radius: 22px; background-color: #ffffff; box-shadow: 0 24px 64px rgba(47, 37, 61, .12); color: #333338; font-size: 25px; }
+      #s3-caret { margin-left: auto; width: 3px; height: 29px; background-color: #ff5ca8; }
+      #scene3 .review { position: absolute; left: 130px; bottom: 120px; display: flex; gap: 12px; }
+      #scene3 .review span { padding: 11px 17px; border-radius: 999px; background-color: rgba(255,255,255,.72); color: #6e6e73; font-size: 19px; font-weight: 650; }
+      #s3-ipad-wrap { position: absolute; top: 26px; right: 154px; z-index: 4; width: 680px; height: 980px; will-change: transform, opacity; }
+      #s3-ipad-frame { inset: 0; width: 680px; height: 980px; border-radius: 44px; }
+
+      /* Scene 4 — Widgets */
+      #scene4 { background-color: #f5f5f7; }
+      #s4-dark-panel { position: absolute; inset: 46px 54px; border-radius: 54px; background-color: #101114; overflow: hidden; }
+      #scene4 .paper-dots { opacity: .08; filter: invert(1); }
+      #s4-glow { right: -70px; bottom: -260px; width: 800px; height: 800px; background-color: rgba(255, 92, 168, .58); }
+      #s4-orbit { top: -420px; right: -220px; width: 1030px; height: 1030px; border-color: rgba(255,255,255,.13); }
+      #scene4 .copy { position: absolute; top: 178px; right: 126px; z-index: 5; width: 810px; color: #ffffff; }
+      #scene4 .label { color: #ff9ccb; }
+      #scene4 h2 { margin-top: 22px; font-size: 98px; }
+      #scene4 .body { width: 720px; margin-top: 28px; color: #a1a1a6; }
+      #scene4 .types { display: flex; gap: 12px; margin-top: 34px; }
+      #scene4 .types span { padding: 12px 17px; border: 2px solid rgba(255,255,255,.13); border-radius: 999px; background-color: rgba(255,255,255,.06); color: #d1d1d4; font-size: 19px; }
+      #s4-phone-wrap { position: absolute; top: 42px; left: 230px; z-index: 4; width: 416px; height: 904px; will-change: transform, opacity; }
+      #s4-phone-frame { inset: 0; width: 416px; height: 904px; border-color: #303036; border-radius: 55px; }
+      .widget-card { position: absolute; z-index: 6; display: flex; flex-direction: column; width: 340px; min-height: 198px; padding: 26px; border: 2px solid rgba(255,255,255,.18); border-radius: 32px; box-shadow: 0 30px 76px rgba(0,0,0,.38); color: #ffffff; will-change: transform, opacity; }
+      .widget-card small { font-size: 18px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; opacity: .72; }
+      .widget-card strong { margin-top: auto; font-size: 28px; }
+      .widget-card span { font-size: 48px; font-weight: 700; letter-spacing: -.055em; }
+      #s4-card-a { top: 118px; left: 84px; background-color: rgba(112, 76, 117, .94); }
+      #s4-card-b { left: 542px; bottom: 82px; background-color: rgba(58, 66, 81, .95); }
+
+      /* Scene 5 — brand resolution */
+      #scene5 { background-color: #f5f5f7; }
+      #s5-glow-pink { top: 180px; left: 500px; width: 680px; height: 680px; background-color: rgba(255, 92, 168, .38); }
+      #s5-glow-aqua { top: 280px; right: 260px; width: 520px; height: 520px; background-color: rgba(54, 215, 202, .27); }
+      #s5-orbit-a { top: -630px; left: 210px; width: 1500px; height: 1500px; }
+      #s5-orbit-b { top: -350px; left: 490px; width: 940px; height: 940px; }
+      #scene5 .lockup { position: absolute; top: 126px; left: 210px; z-index: 5; display: flex; flex-direction: column; align-items: center; width: 1500px; text-align: center; }
+      #scene5 .app-icon { width: 138px; height: 138px; margin-bottom: 34px; border-radius: 38px; }
+      #scene5 h1 { max-width: 1370px; margin-top: 24px; font-size: 128px; }
+      #scene5 h1 span { display: block; }
+      #scene5 .body { margin-top: 28px; }
+      #scene5 .promises { display: flex; gap: 14px; margin-top: 44px; }
+      #scene5 .promises span { padding: 15px 22px; border: 2px solid rgba(16,16,20,.1); border-radius: 999px; background-color: rgba(255,255,255,.7); color: #5e5e64; font-size: 21px; font-weight: 650; backdrop-filter: blur(16px); will-change: transform, opacity; }
+      #scene5 .availability { position: absolute; right: 0; bottom: 0; left: 0; z-index: 6; padding: 28px; border-top: 2px solid rgba(16,16,20,.1); background-color: rgba(255,255,255,.82); color: #6e6e73; text-align: center; font-size: 20px; font-weight: 650; letter-spacing: .03em; }
     </style>
   </head>
   <body>
-    <div
-      id="root"
-      data-composition-id="orbit-down-launch"
-      data-start="0"
-      data-duration="24"
-      data-width="1920"
-      data-height="1080"
-    >
-      <section id="scene1" class="scene">
-        <div class="noise" data-layout-ignore></div>
-        <div class="glow coral" data-layout-ignore></div>
-        <div class="orbit orbit-a" data-layout-ignore></div>
-        <div class="orbit orbit-b" data-layout-ignore></div>
-        <div class="scene-content">
-          <img class="app-icon" src="assets/product/app-icon.png" alt="" />
-          <p class="eyebrow">Orbit Down</p>
-          <h1>
-            The moments ahead deserve to be <span class="accent">seen.</span>
-          </h1>
+    <div data-hf-id="hf-vprq" id="root" data-composition-id="orbit-down-launch" data-start="0" data-duration="24" data-width="1920" data-height="1080">
+      <section data-hf-id="hf-4u6f" id="scene1" class="scene">
+        <div data-hf-id="hf-m1bu" class="paper-dots" data-layout-ignore=""></div>
+        <div data-hf-id="hf-szx3" id="s1-glow-pink" class="glow" data-layout-ignore=""></div>
+        <div data-hf-id="hf-tpyn" id="s1-glow-aqua" class="glow" data-layout-ignore=""></div>
+        <div data-hf-id="hf-p2me" id="s1-orbit-a" class="orbit" data-layout-ignore=""></div>
+        <div data-hf-id="hf-l4id" id="s1-orbit-b" class="orbit" data-layout-ignore=""></div>
+        <div data-hf-id="hf-bdx3" class="copy">
+          <img data-hf-id="hf-uc7o" class="app-icon" src="assets/product/app-icon.png" alt="">
+          <p data-hf-id="hf-euiv" class="label">Orbit Down</p>
+          <h1 data-hf-id="hf-m3fm"><span data-hf-id="hf-i9rk">The moments ahead,</span><span data-hf-id="hf-nmh9" class="accent">beautifully in view.</span></h1>
+          <p data-hf-id="hf-k6gc" class="body">Expressive countdowns that feel at home on every Apple screen.</p>
+        </div>
+        <div data-hf-id="hf-12n0" id="s1-rule" class="hairline" data-layout-ignore=""></div>
+        <div data-hf-id="hf-5iqg" class="platforms"><span data-hf-id="hf-3ct0">iPhone</span><span data-hf-id="hf-a9fx">iPad</span><span data-hf-id="hf-myl0">Mac</span><span data-hf-id="hf-157y">Widgets</span></div>
+        <figure data-hf-id="hf-6axp" id="s1-ipad-frame" class="device" data-layout-allow-overflow=""><img data-hf-id="hf-iuco" src="assets/product/ipad-library-current.png" alt="Orbit Down on iPad"></figure>
+        <figure data-hf-id="hf-dmru" id="s1-phone-frame" class="device"><img data-hf-id="hf-vks8" src="assets/product/iphone-library-current.png" alt="Orbit Down on iPhone"></figure>
+        <div data-hf-id="hf-bso2" id="s1-chip-a" class="glass-chip"><span data-hf-id="hf-r2xj">Next trip</span><strong data-hf-id="hf-2rxu">17d</strong></div>
+        <div data-hf-id="hf-7uk1" id="s1-chip-b" class="glass-chip"><span data-hf-id="hf-6rt4">Rent due</span><strong data-hf-id="hf-l1un">6 days</strong></div>
+      </section>
+
+      <section data-hf-id="hf-tyos" id="scene2" class="scene">
+        <div data-hf-id="hf-0zxa" class="paper-dots" data-layout-ignore=""></div>
+        <div data-hf-id="hf-7cwn" id="s2-glow" class="glow" data-layout-ignore=""></div>
+        <div data-hf-id="hf-r8s7" class="copy">
+          <p data-hf-id="hf-3am9" class="label">Made for the Mac</p>
+          <h2 data-hf-id="hf-aaa1">A wider view of everything ahead.</h2>
+          <p data-hf-id="hf-05it" class="body">Collections, your full library, and every detail—together in one native workspace.</p>
+        </div>
+        <div data-hf-id="hf-8ga5" id="s2-rule" class="hairline" data-layout-ignore=""></div>
+        <p data-hf-id="hf-eo8y" class="metadata">Native macOS experience</p>
+        <div data-hf-id="hf-zow6" id="s2-mac-wrap" data-layout-allow-overflow="">
+          <img data-hf-id="hf-w8zl" id="s2-mac-image" src="assets/product/mac-library-current.png" alt="Orbit Down on Mac">
+          <div data-hf-id="hf-82fz" id="s2-sheen" data-layout-ignore=""></div>
         </div>
       </section>
-      <section id="scene2" class="scene">
-        <div class="grid" data-layout-ignore></div>
-        <div class="glow teal" data-layout-ignore></div>
-        <div class="scene-content">
-          <div class="scene-title">
-            <div>
-              <p class="eyebrow">One beautiful place</p>
-              <h2>Everything worth looking forward to.</h2>
-            </div>
-            <div class="token-row">
-              <span class="token">Quick Add</span
-              ><span class="token">Customize</span
-              ><span class="token">Share</span>
-            </div>
-          </div>
-          <div class="mac-frame">
-            <div class="mac-bar"><i></i><i></i><i></i></div>
-            <img src="assets/product/mac-library.png" alt="Orbit Down on Mac" />
-          </div>
+
+      <section data-hf-id="hf-uqcl" id="scene3" class="scene">
+        <div data-hf-id="hf-anwy" id="s3-panel">
+          <div data-hf-id="hf-opy8" id="s3-glow" class="glow" data-layout-ignore=""></div>
+          <div data-hf-id="hf-u6r6" id="s3-orbit" class="orbit" data-layout-ignore=""></div>
         </div>
+        <div data-hf-id="hf-quh6" class="copy">
+          <p data-hf-id="hf-s4bx" class="label">Quick Add</p>
+          <h2 data-hf-id="hf-11rg">Just say when.</h2>
+          <p data-hf-id="hf-w1fw" class="body">Type naturally. Orbit Down prepares the moment, then keeps you in control before it’s created.</p>
+        </div>
+        <div data-hf-id="hf-p5gi" id="s3-prompt"><span data-hf-id="hf-ucf6">Stretch break in 45 minutes</span><i data-hf-id="hf-ropk" id="s3-caret" data-layout-ignore=""></i></div>
+        <div data-hf-id="hf-qfqc" class="review"><span data-hf-id="hf-lm17">Natural dates</span><span data-hf-id="hf-dhvn">Review first</span><span data-hf-id="hf-r98v">Local processing</span></div>
+        <div data-hf-id="hf-bcux" id="s3-ipad-wrap"><figure data-hf-id="hf-dd7o" id="s3-ipad-frame" class="device"><img data-hf-id="hf-jj1g" src="assets/product/ipad-quick-add-current.png" alt="Quick Add on iPad"></figure></div>
       </section>
-      <section id="scene3" class="scene">
-        <div class="glow coral" data-layout-ignore></div>
-        <div class="orbit orbit-a" data-layout-ignore></div>
-        <div class="scene-content">
-          <div class="title-row">
-            <div>
-              <p class="eyebrow">Wherever you look</p>
-              <h2>Every screen. <span class="accent">Same feeling.</span></h2>
-              <div class="accent-line"></div>
-            </div>
-            <div class="platforms">
-              <span>iPhone</span><span>iPad</span><span>Mac</span
-              ><span>Widgets</span>
-            </div>
-          </div>
-          <div class="device-deck">
-            <figure class="screen mac">
-              <img
-                src="assets/product/mac-widgets.png"
-                alt="Orbit Down widgets on Mac"
-              />
-            </figure>
-            <figure class="screen ipad">
-              <img
-                src="assets/product/ipad-library.png"
-                alt="Orbit Down on iPad"
-              />
-            </figure>
-            <figure class="screen phone">
-              <img
-                src="assets/product/iphone-widgets.png"
-                alt="Orbit Down widgets on iPhone"
-              />
-            </figure>
-          </div>
+
+      <section data-hf-id="hf-di2a" id="scene4" class="scene">
+        <div data-hf-id="hf-j7p8" id="s4-dark-panel">
+          <div data-hf-id="hf-1e8b" class="paper-dots" data-layout-ignore=""></div>
+          <div data-hf-id="hf-nvah" id="s4-glow" class="glow" data-layout-ignore=""></div>
+          <div data-hf-id="hf-px4p" id="s4-orbit" class="orbit" data-layout-ignore=""></div>
         </div>
+        <div data-hf-id="hf-qg65" class="copy">
+          <p data-hf-id="hf-jgb9" class="label">Widget Gallery</p>
+          <h2 data-hf-id="hf-oukw">Your next moment is already waiting.</h2>
+          <p data-hf-id="hf-kkiz" class="body">Single countdowns, upcoming lists, and collection dashboards carry your saved style onto the screen.</p>
+          <div data-hf-id="hf-qcgb" class="types"><span data-hf-id="hf-tuhx">Single</span><span data-hf-id="hf-2d6f">Upcoming</span><span data-hf-id="hf-dw07">Dashboard</span></div>
+        </div>
+        <div data-hf-id="hf-zo5g" id="s4-phone-wrap"><figure data-hf-id="hf-1wkb" id="s4-phone-frame" class="device"><img data-hf-id="hf-ymu0" src="assets/product/iphone-widgets-current.png" alt="Orbit Down Widget Gallery"></figure></div>
+        <div data-hf-id="hf-k2lt" id="s4-card-a" class="widget-card"><small data-hf-id="hf-lkfs">Travel</small><strong data-hf-id="hf-i1ze">Next trip</strong><span data-hf-id="hf-b1q7">17d 6h</span></div>
+        <div data-hf-id="hf-o0pu" id="s4-card-b" class="widget-card"><small data-hf-id="hf-p4zm">Finance</small><strong data-hf-id="hf-vvub">Rent due</strong><span data-hf-id="hf-dkqw">6 days</span></div>
       </section>
-      <section id="scene4" class="scene">
-        <div class="noise" data-layout-ignore></div>
-        <div class="glow mint" data-layout-ignore></div>
-        <div class="ring one" data-layout-ignore></div>
-        <div class="ring two" data-layout-ignore></div>
-        <div class="ring three" data-layout-ignore></div>
-        <div class="core">✓</div>
-        <h2 class="closing-line">Your moments stay yours.</h2>
-        <div class="promise one">
-          <strong>No ads</strong><span>No ad SDK. No upsell maze.</span>
+
+      <section data-hf-id="hf-hg6b" id="scene5" class="scene">
+        <div data-hf-id="hf-1sjc" class="paper-dots" data-layout-ignore=""></div>
+        <div data-hf-id="hf-7qyb" id="s5-glow-pink" class="glow" data-layout-ignore=""></div>
+        <div data-hf-id="hf-f5ej" id="s5-glow-aqua" class="glow" data-layout-ignore=""></div>
+        <div data-hf-id="hf-x3v6" id="s5-orbit-a" class="orbit" data-layout-ignore=""></div>
+        <div data-hf-id="hf-t5r5" id="s5-orbit-b" class="orbit" data-layout-ignore=""></div>
+        <div data-hf-id="hf-6jvi" class="lockup">
+          <img data-hf-id="hf-s8uk" class="app-icon" src="assets/product/app-icon-end.png" alt="">
+          <p data-hf-id="hf-og87" class="label">Orbit Down</p>
+          <h1 data-hf-id="hf-7xza"><span data-hf-id="hf-8l7g">Something beautiful</span><span data-hf-id="hf-7h8r">to look forward to.</span></h1>
+          <p data-hf-id="hf-kgf2" class="body">Your moments stay on your device by default, with optional private iCloud sync.</p>
+          <div data-hf-id="hf-toju" class="promises"><span data-hf-id="hf-yh5b">Free</span><span data-hf-id="hf-r8t5">Ad-free</span><span data-hf-id="hf-oqh9">No account</span></div>
         </div>
-        <div class="promise two">
-          <strong>No tracking</strong><span>No analytics backend.</span>
-        </div>
-        <div class="promise three">
-          <strong>No account</strong><span>Optional private iCloud sync.</span>
-        </div>
-      </section>
-      <section id="scene5" class="scene">
-        <div class="glow coral" data-layout-ignore></div>
-        <div class="orbit orbit-a" data-layout-ignore></div>
-        <div class="orbit orbit-b" data-layout-ignore></div>
-        <div class="scene-content">
-          <img class="app-icon" src="assets/product/app-icon-end.png" alt="" />
-          <p class="eyebrow">Orbit Down</p>
-          <h1>Make it worth the <span class="accent">wait.</span></h1>
-          <p class="body">Beautiful countdowns for iPhone, iPad, and Mac.</p>
-          <div class="promise-pill">Free · Private · Ad-free</div>
-        </div>
+        <div data-hf-id="hf-yq0s" class="availability">Coming to the App Store for iPhone, iPad, and Mac</div>
       </section>
     </div>
+
     <script>
       window.__timelines = window.__timelines || {};
       const tl = gsap.timeline({ paused: true });
-      tl.from(
-        "#scene1 .glow",
-        { scale: 0.62, opacity: 0, duration: 1.4, ease: "sine.out" },
-        0.15,
-      )
-        .from(
-          "#scene1 .orbit-a",
-          { scale: 0.72, opacity: 0, duration: 1.1, ease: "power2.out" },
-          0.2,
-        )
-        .from(
-          "#scene1 .orbit-b",
-          { scale: 0.54, opacity: 0, duration: 1, ease: "back.out(1.3)" },
-          0.3,
-        )
-        .from(
-          "#scene1 .app-icon",
-          {
-            y: 46,
-            scale: 0.78,
-            opacity: 0,
-            duration: 0.8,
-            ease: "back.out(1.45)",
-          },
-          0.35,
-        )
-        .from(
-          "#scene1 .eyebrow",
-          { y: 24, opacity: 0, duration: 0.65, ease: "power3.out" },
-          0.72,
-        )
-        .from(
-          "#scene1 h1",
-          { y: 58, opacity: 0, duration: 0.9, ease: "expo.out" },
-          0.9,
-        )
-        .to(
-          "#scene1 .orbit-a",
-          { rotation: 34, duration: 4.2, ease: "none" },
-          0.2,
-        )
-        .to(
-          "#scene1 .orbit-b",
-          { rotation: -28, duration: 4.1, ease: "none" },
-          0.25,
-        );
-      tl.to(
-        "#scene1",
-        {
-          filter: "blur(18px)",
-          scale: 1.035,
-          opacity: 0,
-          duration: 0.65,
-          ease: "power2.inOut",
-        },
-        4.1,
-      )
-        .fromTo(
-          "#scene2",
-          { filter: "blur(18px)", scale: 0.97, opacity: 0 },
-          {
-            filter: "blur(0px)",
-            scale: 1,
-            opacity: 1,
-            duration: 0.65,
-            ease: "power2.inOut",
-          },
-          4.16,
-        )
-        .set("#scene1", { visibility: "hidden" }, 4.81)
-        .from(
-          "#scene2 .grid",
-          { opacity: 0, duration: 0.8, ease: "sine.out" },
-          4.28,
-        )
-        .from(
-          "#scene2 .glow",
-          { scale: 0.7, opacity: 0, duration: 1.1, ease: "sine.out" },
-          4.3,
-        )
-        .from(
-          "#scene2 .eyebrow",
-          { x: -36, opacity: 0, duration: 0.55, ease: "power3.out" },
-          4.38,
-        )
-        .from(
-          "#scene2 h2",
-          { y: 44, opacity: 0, duration: 0.75, ease: "expo.out" },
-          4.5,
-        )
-        .from(
-          "#scene2 .token",
-          {
-            y: 24,
-            scale: 0.9,
-            opacity: 0,
-            duration: 0.52,
-            stagger: 0.1,
-            ease: "back.out(1.35)",
-          },
-          4.72,
-        )
-        .from(
-          "#scene2 .mac-frame",
-          { y: 86, scale: 0.96, opacity: 0, duration: 0.9, ease: "power4.out" },
-          4.7,
-        )
-        .to(
-          "#scene2 .mac-frame",
-          { y: -10, duration: 3.2, ease: "sine.inOut" },
-          5.62,
-        );
-      tl.set("#scene3", { opacity: 1 }, 8.8)
-        .fromTo(
-          "#scene3",
-          { clipPath: "circle(0% at 50% 52%)" },
-          {
-            clipPath: "circle(78% at 50% 52%)",
-            duration: 0.7,
-            ease: "power2.out",
-          },
-          8.8,
-        )
-        .set("#scene2", { opacity: 0, visibility: "hidden" }, 9.5)
-        .from(
-          "#scene3 .glow",
-          { scale: 0.68, opacity: 0, duration: 1, ease: "sine.out" },
-          9.0,
-        )
-        .from(
-          "#scene3 .orbit-a",
-          { scale: 0.78, opacity: 0, duration: 0.9, ease: "power2.out" },
-          9.05,
-        )
-        .from(
-          "#scene3 .eyebrow",
-          { y: 22, opacity: 0, duration: 0.5, ease: "power2.out" },
-          9.14,
-        )
-        .from(
-          "#scene3 h2",
-          { y: 44, opacity: 0, duration: 0.72, ease: "expo.out" },
-          9.22,
-        )
-        .from(
-          "#scene3 .accent-line",
-          { scaleX: 0, duration: 0.7, ease: "power3.out" },
-          9.52,
-        )
-        .from(
-          "#scene3 .platforms span",
-          {
-            y: 20,
-            opacity: 0,
-            duration: 0.45,
-            stagger: 0.08,
-            ease: "power3.out",
-          },
-          9.5,
-        )
-        .from(
-          "#scene3 .screen.mac",
-          { y: 80, scale: 0.94, opacity: 0, duration: 0.8, ease: "power4.out" },
-          9.65,
-        )
-        .from(
-          "#scene3 .screen.ipad",
-          {
-            x: -90,
-            y: 30,
-            rotation: -10,
-            opacity: 0,
-            duration: 0.78,
-            ease: "back.out(1.35)",
-          },
-          9.82,
-        )
-        .from(
-          "#scene3 .screen.phone",
-          {
-            x: 90,
-            y: 44,
-            rotation: 11,
-            opacity: 0,
-            duration: 0.75,
-            ease: "back.out(1.4)",
-          },
-          9.98,
-        )
-        .to(
-          "#scene3 .orbit-a",
-          { rotation: 26, duration: 4.1, ease: "none" },
-          9.1,
-        );
-      tl.to(
-        "#scene3",
-        {
-          filter: "blur(18px)",
-          scale: 1.035,
-          opacity: 0,
-          duration: 0.65,
-          ease: "power2.inOut",
-        },
-        13.6,
-      )
-        .fromTo(
-          "#scene4",
-          { filter: "blur(18px)", scale: 0.97, opacity: 0 },
-          {
-            filter: "blur(0px)",
-            scale: 1,
-            opacity: 1,
-            duration: 0.65,
-            ease: "power2.inOut",
-          },
-          13.66,
-        )
-        .set("#scene3", { visibility: "hidden" }, 14.31)
-        .from(
-          "#scene4 .glow",
-          { scale: 0.65, opacity: 0, duration: 1.2, ease: "sine.out" },
-          13.82,
-        )
-        .from(
-          "#scene4 .ring",
-          {
-            scale: 0.68,
-            opacity: 0,
-            duration: 0.75,
-            stagger: 0.12,
-            ease: "power2.out",
-          },
-          13.9,
-        )
-        .from(
-          "#scene4 .core",
-          { scale: 0.55, opacity: 0, duration: 0.62, ease: "back.out(1.55)" },
-          14.25,
-        )
-        .from(
-          "#scene4 .closing-line",
-          { y: -34, opacity: 0, duration: 0.65, ease: "expo.out" },
-          14.3,
-        )
-        .from(
-          "#scene4 .promise.one",
-          { x: -70, opacity: 0, duration: 0.65, ease: "power3.out" },
-          14.48,
-        )
-        .from(
-          "#scene4 .promise.two",
-          { x: 70, opacity: 0, duration: 0.65, ease: "power2.out" },
-          14.62,
-        )
-        .from(
-          "#scene4 .promise.three",
-          {
-            y: 60,
-            scale: 0.94,
-            opacity: 0,
-            duration: 0.65,
-            ease: "back.out(1.3)",
-          },
-          14.76,
-        )
-        .to(
-          "#scene4 .ring.one",
-          {
-            scale: 1.04,
-            duration: 1.5,
-            repeat: 2,
-            yoyo: true,
-            ease: "sine.inOut",
-          },
-          14.5,
-        )
-        .to(
-          "#scene4 .ring.two",
-          {
-            scale: 0.96,
-            duration: 1.3,
-            repeat: 2,
-            yoyo: true,
-            ease: "sine.inOut",
-          },
-          14.6,
-        );
-      tl.to(
-        "#scene4",
-        {
-          filter: "blur(18px)",
-          scale: 1.035,
-          opacity: 0,
-          duration: 0.65,
-          ease: "power2.inOut",
-        },
-        18.5,
-      )
-        .fromTo(
-          "#scene5",
-          { filter: "blur(18px)", scale: 0.97, opacity: 0 },
-          {
-            filter: "blur(0px)",
-            scale: 1,
-            opacity: 1,
-            duration: 0.65,
-            ease: "power2.inOut",
-          },
-          18.56,
-        )
-        .set("#scene4", { visibility: "hidden" }, 19.21)
-        .from(
-          "#scene5 .glow",
-          { scale: 0.6, opacity: 0, duration: 1.2, ease: "sine.out" },
-          18.7,
-        )
-        .from(
-          "#scene5 .orbit-a",
-          { scale: 0.74, opacity: 0, duration: 1, ease: "power2.out" },
-          18.74,
-        )
-        .from(
-          "#scene5 .orbit-b",
-          { scale: 0.55, opacity: 0, duration: 0.9, ease: "back.out(1.3)" },
-          18.86,
-        )
-        .from(
-          "#scene5 .app-icon",
-          {
-            y: 44,
-            scale: 0.76,
-            opacity: 0,
-            duration: 0.72,
-            ease: "back.out(1.5)",
-          },
-          18.95,
-        )
-        .from(
-          "#scene5 .eyebrow",
-          { y: 22, opacity: 0, duration: 0.48, ease: "power3.out" },
-          19.28,
-        )
-        .from(
-          "#scene5 h1",
-          { y: 54, opacity: 0, duration: 0.78, ease: "expo.out" },
-          19.4,
-        )
-        .from(
-          "#scene5 .body",
-          { y: 30, opacity: 0, duration: 0.58, ease: "power2.out" },
-          19.78,
-        )
-        .from(
-          "#scene5 .promise-pill",
-          {
-            y: 22,
-            scale: 0.9,
-            opacity: 0,
-            duration: 0.52,
-            ease: "back.out(1.4)",
-          },
-          20.05,
-        )
-        .to(
-          "#scene5 .orbit-a",
-          { rotation: 24, duration: 4.5, ease: "none" },
-          18.8,
-        )
-        .to(
-          "#scene5 .orbit-b",
-          { rotation: -30, duration: 4.4, ease: "none" },
-          18.84,
-        )
-        .to(
-          "#scene5 .scene-content",
-          { opacity: 0, y: -18, duration: 0.45, ease: "power2.in" },
-          23.4,
-        )
-        .to(
-          "#scene5 .glow, #scene5 .orbit",
-          { opacity: 0, duration: 0.45, ease: "power1.in" },
-          23.5,
-        );
+
+      /* Scene 1: typography leads, devices expand from a shared cluster. */
+      tl.fromTo("#s1-glow-pink, #s1-glow-aqua", { opacity: 0, scale: .78 }, { opacity: .38, scale: 1, duration: 1.35, ease: "sine.out", stagger: .12 }, .16)
+        .fromTo("#scene1 .app-icon", { opacity: 0, scale: .72, y: 32 }, { opacity: 1, scale: 1, y: 0, duration: .72, ease: "power3.out" }, .22)
+        .fromTo("#scene1 .label", { opacity: 0, x: -42 }, { opacity: 1, x: 0, duration: .54, ease: "expo.out" }, .52)
+        .fromTo("#scene1 h1 span", { opacity: 0, y: 76 }, { opacity: 1, y: 0, duration: .88, stagger: .11, ease: "power4.out" }, .61)
+        .fromTo("#scene1 .body", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .68, ease: "power2.out" }, .98)
+        .fromTo("#s1-rule", { scaleX: 0 }, { scaleX: 1, duration: .72, ease: "power3.out" }, 1.08)
+        .fromTo("#scene1 .platforms span", { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: .46, stagger: .065, ease: "power2.out" }, 1.24)
+        .fromTo("#s1-ipad-frame", { opacity: 0, x: -300, y: 240, scale: .58, rotation: -8 }, { opacity: 1, x: 0, y: 0, scale: 1, rotation: 4, duration: 1.18, ease: "power3.out" }, .31)
+        .fromTo("#s1-phone-frame", { opacity: 0, x: -570, y: -40, scale: .55, rotation: -10 }, { opacity: 1, x: 0, y: 0, scale: 1, rotation: 3, duration: 1.08, ease: "expo.out" }, .47)
+        .fromTo("#scene1 .glass-chip", { opacity: 0, scale: .68, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: .62, stagger: .1, ease: "power3.out" }, 1.12)
+        .to("#s1-ipad-frame", { y: -10, rotation: 3, duration: 2.5, ease: "sine.inOut" }, 1.5)
+        .to("#s1-orbit-a", { rotation: 24, duration: 3.9, ease: "none" }, .2)
+        .to("#s1-orbit-b", { rotation: -20, duration: 3.8, ease: "none" }, .25);
+
+      /* Primary transition: calm blur crossfade. */
+      tl.to("#scene1", { filter: "blur(12px)", scale: 1.025, opacity: 0, duration: .58, ease: "power2.inOut" }, 4.08)
+        .fromTo("#scene2", { filter: "blur(12px)", scale: .975, opacity: 0 }, { filter: "blur(0px)", scale: 1, opacity: 1, duration: .58, ease: "power2.inOut", immediateRender: false }, 4.16)
+        .set("#scene1", { visibility: "hidden" }, 4.74)
+        .fromTo("#scene2 .label", { opacity: 0, x: -38 }, { opacity: 1, x: 0, duration: .5, ease: "expo.out" }, 4.39)
+        .fromTo("#scene2 h2", { opacity: 0, y: 56 }, { opacity: 1, y: 0, duration: .78, ease: "power4.out" }, 4.48)
+        .fromTo("#scene2 .body", { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: .66, ease: "power2.out" }, 4.82)
+        .fromTo("#s2-rule", { scaleX: 0 }, { scaleX: 1, duration: .64, ease: "power3.out" }, 5.04)
+        .fromTo("#scene2 .metadata", { opacity: 0 }, { opacity: 1, duration: .7, ease: "sine.out" }, 5.18)
+        .fromTo("#s2-mac-wrap", { opacity: 0, x: 120, y: 76, scale: .93 }, { opacity: 1, x: 0, y: 0, scale: 1, duration: 1.02, ease: "expo.out" }, 4.5)
+        .fromTo("#s2-glow", { opacity: 0, scale: .82 }, { opacity: .28, scale: 1, duration: 1.2, ease: "sine.out" }, 4.6)
+        .to("#s2-mac-image", { scale: 1.025, duration: 3.1, ease: "sine.inOut" }, 5.42)
+        .fromTo("#s2-sheen", { x: -330, opacity: 0 }, { x: 1470, opacity: .34, duration: 1.05, ease: "none" }, 6.38)
+        .to("#s2-sheen", { opacity: 0, duration: .28, ease: "power1.in" }, 7.43);
+
+      /* Accent transition: decisive vertical push into Quick Add. */
+      tl.to("#scene2", { y: -1080, duration: .58, ease: "power3.inOut" }, 8.64)
+        .fromTo("#scene3", { y: 1080, opacity: 1 }, { y: 0, opacity: 1, duration: .58, ease: "power3.inOut", immediateRender: false }, 8.64)
+        .set("#scene2", { opacity: 0, visibility: "hidden" }, 9.22)
+        .fromTo("#scene3 .label", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: .52, ease: "expo.out" }, 8.88)
+        .fromTo("#scene3 h2", { opacity: 0, y: 58 }, { opacity: 1, y: 0, duration: .74, ease: "power4.out" }, 8.96)
+        .fromTo("#scene3 .body", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: .64, ease: "power2.out" }, 9.29)
+        .fromTo("#s3-ipad-wrap", { opacity: 0, x: 150, rotation: 7, scale: .9 }, { opacity: 1, x: 0, rotation: 2, scale: 1, duration: .94, ease: "expo.out" }, 9.02)
+        .fromTo("#s3-prompt", { opacity: 0, scale: .86, y: 32 }, { opacity: 1, scale: 1, y: 0, duration: .63, ease: "power3.out" }, 9.56)
+        .fromTo("#scene3 .review span", { opacity: 0, y: 20, scale: .9 }, { opacity: 1, y: 0, scale: 1, duration: .46, stagger: .08, ease: "power3.out" }, 9.88)
+        .fromTo("#s3-glow", { opacity: 0, scale: .8 }, { opacity: .32, scale: 1, duration: 1.05, ease: "sine.out" }, 8.98)
+        .to("#s3-orbit", { rotation: 24, duration: 4.2, ease: "none" }, 8.85)
+        .to("#s3-caret", { opacity: 0, duration: .32, repeat: 5, yoyo: true, ease: "none" }, 10.08);
+
+      /* Return to the primary blur crossfade for the widget reveal. */
+      tl.to("#scene3", { filter: "blur(12px)", scale: 1.025, opacity: 0, duration: .58, ease: "power2.inOut" }, 13.22)
+        .fromTo("#scene4", { filter: "blur(12px)", scale: .975, opacity: 0 }, { filter: "blur(0px)", scale: 1, opacity: 1, duration: .58, ease: "power2.inOut", immediateRender: false }, 13.3)
+        .set("#scene3", { visibility: "hidden" }, 13.88)
+        .fromTo("#scene4 .label", { opacity: 0, x: 42 }, { opacity: 1, x: 0, duration: .5, ease: "expo.out" }, 13.56)
+        .fromTo("#scene4 h2", { opacity: 0, y: 58 }, { opacity: 1, y: 0, duration: .78, ease: "power4.out" }, 13.64)
+        .fromTo("#scene4 .body", { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: .65, ease: "power2.out" }, 13.96)
+        .fromTo("#scene4 .types span", { opacity: 0, scale: .75 }, { opacity: 1, scale: 1, duration: .48, stagger: .07, ease: "power3.out" }, 14.22)
+        .fromTo("#s4-phone-wrap", { opacity: 0, x: -150, rotation: -8, scale: .88 }, { opacity: 1, x: 0, rotation: -2, scale: 1, duration: .94, ease: "expo.out" }, 13.52)
+        .fromTo("#scene4 .widget-card", { opacity: 0, scale: .68, y: 24 }, { opacity: 1, scale: 1, y: 0, duration: .64, stagger: .11, ease: "power3.out" }, 14.18)
+        .fromTo("#s4-glow", { opacity: 0, scale: .8 }, { opacity: .42, scale: 1, duration: 1.18, ease: "sine.out" }, 13.48)
+        .to("#s4-orbit", { rotation: -24, duration: 4.4, ease: "none" }, 13.42)
+        .to("#s4-phone-wrap", { y: -8, duration: 2.6, ease: "sine.inOut" }, 14.5);
+
+      /* Gentle focus-pull into the closing lockup. */
+      tl.to("#scene4", { filter: "blur(16px)", opacity: 0, duration: .62, ease: "power1.in" }, 18.12)
+        .fromTo("#scene5", { filter: "blur(16px)", opacity: 0, scale: .98 }, { filter: "blur(0px)", opacity: 1, scale: 1, duration: .72, ease: "power1.out", immediateRender: false }, 18.24)
+        .set("#scene4", { visibility: "hidden" }, 18.76)
+        .fromTo("#s5-glow-pink, #s5-glow-aqua", { opacity: 0, scale: .78 }, { opacity: .34, scale: 1, duration: 1.25, stagger: .1, ease: "sine.out" }, 18.34)
+        .fromTo("#scene5 .app-icon", { opacity: 0, scale: .65, y: 34 }, { opacity: 1, scale: 1, y: 0, duration: .72, ease: "power3.out" }, 18.48)
+        .fromTo("#scene5 .label", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: .5, ease: "expo.out" }, 18.82)
+        .fromTo("#scene5 h1", { opacity: 0, y: 62 }, { opacity: 1, y: 0, duration: .82, ease: "power4.out" }, 18.94)
+        .fromTo("#scene5 .body", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: .64, ease: "power2.out" }, 19.34)
+        .fromTo("#scene5 .promises span", { opacity: 0, scale: .72, y: 18 }, { opacity: 1, scale: 1, y: 0, duration: .5, stagger: .08, ease: "power3.out" }, 19.68)
+        .fromTo("#scene5 .availability", { opacity: 0, y: 42 }, { opacity: 1, y: 0, duration: .65, ease: "power2.out" }, 20.04)
+        .to("#s5-orbit-a", { rotation: 20, duration: 5.3, ease: "none" }, 18.36)
+        .to("#s5-orbit-b", { rotation: -24, duration: 5.2, ease: "none" }, 18.4)
+        .to("#scene5 .lockup, #scene5 .availability", { opacity: 0, y: -16, duration: .46, ease: "power2.in" }, 23.4)
+        .to("#scene5 .glow, #scene5 .orbit", { opacity: 0, duration: .42, ease: "power1.in" }, 23.5);
+
       window.__timelines["orbit-down-launch"] = tl;
     </script>
   </body>

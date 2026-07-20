@@ -1,57 +1,53 @@
 ---
-name: Orbit Down Midnight Orbit
+name: Orbit Down Luminous Editorial
 colors:
-  background: "#090B15"
-  background-soft: "#0E1220"
-  surface: "#141827"
-  foreground: "#F7F4F1"
-  muted: "#AAA9B6"
-  coral: "#FF7358"
-  amber: "#F4B44A"
-  teal: "#43C9C1"
-  mint: "#8BD6A0"
-  warm-dark: "#1A0B08"
+  background: "#F5F5F7"
+  surface: "#FFFFFF"
+  foreground: "#101014"
+  muted: "#6E6E73"
+  pink: "#FF5CA8"
+  pink-deep: "#DB3B86"
+  peach: "#FF9B76"
+  aqua: "#36D7CA"
+  violet: "#8D72FF"
+  dark: "#101114"
 typography:
-  headline: { fontFamily: Inter, fontWeight: 800 }
-  body: { fontFamily: Inter, fontWeight: 400 }
-  label: { fontFamily: Inter, fontWeight: 700 }
-rounded: { sm: 14px, md: 24px, lg: 36px, full: 9999px }
-spacing: { sm: 12px, md: 24px, lg: 48px }
+  headline: { fontFamily: "SF Pro Display", fontWeight: 700 }
+  body: { fontFamily: "SF Pro Text", fontWeight: 400 }
+  label: { fontFamily: "SF Pro Text", fontWeight: 700 }
+rounded: { sm: 16px, md: 28px, lg: 44px, full: 9999px }
+spacing: { sm: 16px, md: 32px, lg: 72px }
 motion:
-  energy: moderate
-  easing: { entry: "power3.out", accent: "back.out(1.45)", ambient: "sine.inOut" }
-  duration: { entrance: 0.7, hold: 3.0, transition: 0.65 }
-  transition: blur-crossfade
+  energy: calm-confident
+  easing: { entry: "power3.out", product: "expo.out", ambient: "sine.inOut" }
+  duration: { entrance: 0.8, hold: 3.2, transition: 0.6 }
+  transition: editorial-blur-and-push
 ---
 
 # Overview
 
-Midnight Orbit is a warm, human, premium system for a personal Apple-platform app. It uses deep navy rather than pure black, warm white rather than pure white, and the app icon's coral, amber, teal, and mint as purposeful signals. The emotional register is optimistic anticipation: cinematic enough for a launch, calm enough for a daily companion.
+Luminous Editorial is Orbit Down’s Apple-native launch language: a warm, softly textured light canvas, enormous disciplined typography, and current product imagery treated as physical objects. It should feel precise and effortless, with one vivid pink signal and restrained peach, aqua, and violet atmosphere.
 
-# Colors
+# Frame composition
 
-- Background: `#090B15`
-- Background soft: `#0E1220`
-- Surface: `#141827`
-- Foreground: `#F7F4F1`
-- Muted: `#AAA9B6`
-- Coral: `#FF7358`
-- Amber: `#F4B44A`
-- Teal: `#43C9C1`
-- Mint: `#8BD6A0`
-- Warm dark: `#1A0B08`
+- Use asymmetrical, edge-anchored layouts for product scenes.
+- Give every frame a background atmosphere, a product or typographic focal point, and one foreground detail.
+- Let real iPhone, iPad, and Mac captures occupy substantial frame area; never present a flat raw screenshot.
+- Reserve centered composition for the opening lockup and final brand resolution only.
 
 # Typography
 
-Use Inter throughout. Headlines use 800 weight, large scale, tight tracking, and natural wrapping. Body copy uses 400 weight and generous line height. Labels use 700 weight, compact uppercase styling, and measured tracking.
+Use the Apple system type family. Headlines are large, tightly tracked, and confident rather than heavy. Body copy stays short and spacious. Labels are compact uppercase wayfinding, never decorative filler.
 
-# Elevation and components
+# Depth and components
 
-Use layered depth with soft dark shadows and restrained localized glows. Corners use 14, 24, or 36 pixels; pills may use fully rounded corners. Product imagery should feel physically present but never glossy or chrome-like.
+Use black device rims, white glass surfaces, soft colored halos, and deep but diffuse shadows. Corners follow the product’s native softness: 16, 28, or 44 pixels. Structural hairlines and orbit arcs create paths across the frame.
 
-# Do's and Don'ts
+# Do’s and Don’ts
 
-- Do use orbit rings, small moving satellites, and arcs as recurring motifs.
-- Do keep one clear focal point per scene.
-- Do use coral for the emotional beat, teal/mint for trust, and amber sparingly for anticipation.
-- Do not use gradient text, neon purple-blue gradients, identical card grids, random motion, or infinite animation.
+- Do use the exact current product captures and the app’s real sample moments.
+- Do let pink carry the main emotional emphasis.
+- Do use blur-crossfade as the primary handoff and one vertical push for a decisive product transition.
+- Do keep ambient motion bounded, subtle, and seek-safe.
+- Do not use generic dashboard grids, neon-on-black styling, random motion, infinite animation, or fake product controls.
+- Do not add unverified pricing, launch-date, analytics, or platform claims.
