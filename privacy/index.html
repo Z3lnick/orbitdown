@@ -29,7 +29,7 @@
     <header>
       <p class="eyebrow">Privacy Policy</p>
       <h1>Orbit Down Privacy Policy</h1>
-      <p><strong>Effective date:</strong> July 10, 2026</p>
+      <p><strong>Effective date:</strong> July 29, 2026</p>
       <p>Orbit Down is designed to be free, ad-free, private, and useful without an account. This policy explains what the app stores, what it does not collect, and how optional Apple services are used.</p>
     </header>
 
@@ -60,18 +60,19 @@
     <section class="content-section">
       <h2>Data Stored By The App</h2>
       <p>Orbit Down stores the countdowns, collections, tags, notes, symbols, colors, widget preferences, reminders, completion history, templates, palettes, backups, and optional photo background references that you create. This data is stored on your device by default.</p>
-      <p>If you enable iCloud sync, each countdown, saved palette, and saved template is stored as an individual record in your private Apple CloudKit database, and selected photo backgrounds are stored as private CloudKit assets. For one release, legacy iCloud Key-Value Storage and iCloud Drive data is read only as migration input. The developer does not operate an account system or backend service and does not collect your synced content.</p>
+      <p>If you enable iCloud sync, each countdown, saved palette, and saved template is stored as an individual record in your private Apple CloudKit database, and selected photo backgrounds are stored as private CloudKit assets. For one release, legacy iCloud Key-Value Storage and iCloud Drive data is read only as migration input. The developer does not operate an account system or backend service, cannot access your private CloudKit records, and does not collect your synced content. Synced data remains within the Apple account you use for iCloud.</p>
     </section>
 
     <section class="content-section">
       <h2>Apple Permissions</h2>
       <ul>
-        <li><strong>Calendar:</strong> Used only when you import events as countdowns or add countdown targets back to Calendar.</li>
-        <li><strong>Reminders:</strong> Used only when you import dated reminders or add countdown targets to Reminders.</li>
-        <li><strong>Contacts:</strong> Used only when you import birthdays or anniversaries.</li>
+        <li><strong>Calendar:</strong> Used only when you import or refresh events as countdowns, or explicitly add countdown targets back to Calendar.</li>
+        <li><strong>Reminders:</strong> Used only when you import or refresh dated reminders, or explicitly add countdown targets to Reminders.</li>
+        <li><strong>Contacts:</strong> Used only when you import or refresh birthdays or anniversaries. Orbit Down reads only the contact name and dated birthday or anniversary fields needed for that action.</li>
         <li><strong>Notifications:</strong> Used to schedule reminder notifications you configure.</li>
-        <li><strong>Photos:</strong> Used only when you choose a photo background for a countdown or widget.</li>
+        <li><strong>Photos:</strong> Orbit Down uses Apple's system photo picker. The app receives only the image you explicitly select and does not request broad Photo Library access.</li>
       </ul>
+      <p>These permissions are optional and remain under your control. You can review or revoke them in System Settings &gt; Privacy &amp; Security. You can also change notification access in System Settings &gt; Notifications. Core countdown creation works without Contacts, Calendar, Reminders, Photos, or notification permission.</p>
     </section>
 
     <section class="content-section">
@@ -80,8 +81,9 @@
     </section>
 
     <section class="content-section">
-      <h2>Deleting Data</h2>
-      <p>You can delete countdowns, clear completion history, remove local data from Settings, and delete exported backups from wherever you saved them. If iCloud sync is enabled, Apple sync behavior may affect how deletion propagates across your signed-in devices.</p>
+      <h2>Retention And Deleting Data</h2>
+      <p>Local countdown data is retained on a device until you delete individual countdowns, choose Settings &gt; Erase Local Data, or uninstall Orbit Down. Exported backups and shared files remain wherever you chose to save or send them until you delete them there.</p>
+      <p>If iCloud sync is enabled, deleting an individual synchronized countdown removes that record through Apple's normal CloudKit synchronization. Settings &gt; Erase Local Data removes the local copy and turns off iCloud sync on that device, but deliberately does not erase remote data from your Apple ID. You can remove remaining Orbit Down iCloud data using Apple's iCloud storage management controls. The developer cannot view or delete records in your private CloudKit database on your behalf.</p>
     </section>
 
     <section class="content-section">
