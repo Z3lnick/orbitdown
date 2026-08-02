@@ -465,23 +465,26 @@ h3 { font-size: clamp(2rem, 3.5vw, 3.25rem); font-weight: 640; letter-spacing: -
 .section-heading.centered > p:last-child { margin-right: auto; margin-left: auto; }
 
 .bento-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 20px; }
-.bento-card { position: relative; min-height: 620px; overflow: hidden; border-radius: 36px; background: #f2f2f5; box-shadow: inset 0 0 0 1px rgba(16, 16, 20, .04); }
+.bento-card { position: relative; min-height: 620px; overflow: hidden; border-radius: 36px; background: #f2f2f5; box-shadow: inset 0 0 0 1px rgba(16, 16, 20, .04); isolation: isolate; }
 .bento-create { grid-column: span 5; background: linear-gradient(160deg, #f4f4f7, #e9e9ed); }
 .bento-library { grid-column: span 7; background: linear-gradient(145deg, #8755b9 0%, #ec5c95 43%, #ff9a65 77%, #ffd676 100%); }
 .bento-import { grid-column: 3 / span 8; min-height: 560px; background: linear-gradient(145deg, #eaf0ff, #f4efff 48%, #ffedf5); }
+.bento-library::before { position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgba(54, 23, 86, .42) 0%, rgba(75, 28, 76, .24) 48%, transparent 66%); content: ""; pointer-events: none; }
 .bento-copy { position: relative; z-index: 3; padding: 38px 38px 0; }
 .bento-copy h3 { max-width: 490px; }
 .bento-copy p { max-width: 480px; margin: 17px 0 0; color: var(--muted); }
+.bento-library .bento-copy { width: 50%; }
+.bento-import .bento-copy { width: 58%; }
 .light-copy { color: white; text-shadow: 0 1px 10px rgba(83, 39, 85, .12); }
-.light-copy p { color: rgba(255, 255, 255, .8); }
+.light-copy p { color: rgba(255, 255, 255, .96); }
 .bento-icon { display: grid; place-items: center; width: 38px; height: 38px; margin-bottom: 62px; border-radius: 12px; background: white; box-shadow: 0 9px 24px rgba(22, 22, 28, .08); color: var(--pink-deep); font-size: 1.35rem; font-style: normal; }
 .glass-icon { background: rgba(255, 255, 255, .18); color: white; backdrop-filter: blur(16px); }
 
-.phone-crop { position: absolute; margin: 0; overflow: hidden; border: 6px solid #19191c; border-radius: 38px; background: #eeeef2; box-shadow: 0 32px 70px rgba(28, 27, 34, .2); }
+.phone-crop { position: absolute; z-index: 2; margin: 0; overflow: hidden; border: 6px solid #19191c; border-radius: 38px; background: #eeeef2; box-shadow: 0 32px 70px rgba(28, 27, 34, .2); }
 .phone-crop img { width: 100%; height: auto; }
-.phone-create { right: -4%; bottom: -46%; width: 60%; aspect-ratio: 1206 / 2622; transform: rotate(-3deg); }
+.phone-create { top: 350px; right: -4%; width: 58%; aspect-ratio: 1206 / 2622; transform: rotate(-3deg); }
 .phone-library { right: 6%; bottom: -33%; width: 44%; aspect-ratio: 1206 / 2622; transform: rotate(3deg); }
-.phone-import { right: 6%; bottom: -45%; width: 38%; aspect-ratio: 1206 / 2622; transform: rotate(2deg); }
+.phone-import { right: 3%; bottom: -45%; width: 34%; aspect-ratio: 1206 / 2622; transform: rotate(2deg); }
 
 .widgets {
   position: relative;
@@ -621,8 +624,9 @@ body:not(.home-page) { min-height: 100vh; background: #f5f5f7; }
   .feature-split { grid-template-columns: 1fr; }
   .feature-copy { max-width: 760px; }
   .quick-canvas { min-height: 780px; }
-  .bento-create, .bento-library { grid-column: span 6; }
-  .bento-import { grid-column: 2 / span 10; }
+  .bento-create, .bento-library, .bento-import { grid-column: 2 / span 10; }
+  .phone-create { width: 44%; }
+  .phone-library { right: 5%; width: 38%; }
   .widgets-layout { grid-template-columns: 1fr; }
   .widgets-copy { max-width: 760px; }
   .widget-stage { min-height: 760px; }
@@ -668,10 +672,9 @@ body:not(.home-page) { min-height: 100vh; background: #f5f5f7; }
   .bento-grid { grid-template-columns: 1fr; gap: 14px; }
   .bento-card, .bento-create, .bento-library, .bento-import { grid-column: 1; min-height: 560px; border-radius: 28px; }
   .bento-copy { padding: 28px 28px 0; }
+  .bento-library .bento-copy, .bento-import .bento-copy { width: 100%; }
   .bento-icon { margin-bottom: 46px; }
-  .phone-create { right: -2%; width: 62%; }
-  .phone-library { right: 3%; width: 50%; }
-  .phone-import { right: 3%; width: 52%; }
+  .phone-create, .phone-library, .phone-import { top: 360px; right: 3%; bottom: auto; width: 56%; }
   .widgets-layout { min-height: auto; gap: 48px; }
   .widget-stage { min-height: 580px; }
   .widget-phone { width: 54%; border-width: 5px; border-radius: 34px; }
