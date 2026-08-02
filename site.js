@@ -1,4 +1,60 @@
 (() => {
+  const storageKey = "orbit-theme";
+  const root = document.documentElement;
+  const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
+  const toggles = document.querySelectorAll("[data-theme-toggle]");
+
+  const readStoredTheme = () => {
+    try {
+      const storedTheme = window.localStorage.getItem(storageKey);
+      return storedTheme === "light" || storedTheme === "dark" ? storedTheme : null;
+    } catch {
+      return null;
+    }
+  };
+
+  let storedTheme = readStoredTheme();
+
+  const applyTheme = (theme, shouldPersist = false) => {
+    const nextTheme = theme === "dark" ? "dark" : "light";
+    root.dataset.theme = nextTheme;
+    root.style.colorScheme = nextTheme;
+
+    const themeColor = document.querySelector('meta[name="theme-color"]');
+    themeColor?.setAttribute("content", nextTheme === "dark" ? "#0b0b10" : "#f5f5f7");
+
+    const nextLabel = `Switch to ${nextTheme === "dark" ? "light" : "dark"} theme`;
+    toggles.forEach((toggle) => {
+      toggle.setAttribute("aria-label", nextLabel);
+      toggle.setAttribute("title", nextLabel);
+      toggle.setAttribute("aria-pressed", String(nextTheme === "dark"));
+    });
+
+    if (!shouldPersist) return;
+    storedTheme = nextTheme;
+    try {
+      window.localStorage.setItem(storageKey, nextTheme);
+    } catch {
+      // The selected theme still applies for this page view when storage is unavailable.
+    }
+  };
+
+  const initialTheme = root.dataset.theme || storedTheme || (systemTheme.matches ? "dark" : "light");
+  applyTheme(initialTheme);
+
+  toggles.forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      applyTheme(root.dataset.theme === "dark" ? "light" : "dark", true);
+    });
+  });
+
+  systemTheme.addEventListener?.("change", (event) => {
+    if (storedTheme) return;
+    applyTheme(event.matches ? "dark" : "light");
+  });
+})();
+
+(() => {
   const header = document.querySelector("[data-header]");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
