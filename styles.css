@@ -353,7 +353,7 @@ h3 { font-size: clamp(2rem, 3.5vw, 3.25rem); font-weight: 640; letter-spacing: -
   top: 0;
   left: 50%;
   width: min(66%, 720px);
-  aspect-ratio: 1640 / 2360;
+  aspect-ratio: 2064 / 2752;
   border: 9px solid #1b1b1e;
   border-radius: 42px;
   transform: translate3d(-50%, var(--parallax-y, 0), 0) rotateY(var(--tilt-rotate-y)) rotateX(var(--tilt-rotate-x));
@@ -367,7 +367,7 @@ h3 { font-size: clamp(2rem, 3.5vw, 3.25rem); font-weight: 640; letter-spacing: -
   right: 6%;
   bottom: -5%;
   width: min(28%, 290px);
-  aspect-ratio: 1206 / 2622;
+  aspect-ratio: 1320 / 2868;
   border: 7px solid #17171a;
   border-radius: 43px;
   transform: translate3d(0, calc(var(--parallax-y, 0) * -.5), 0) rotate(2.5deg);
@@ -488,7 +488,7 @@ h3 { font-size: clamp(2rem, 3.5vw, 3.25rem); font-weight: 640; letter-spacing: -
   top: 70px;
   left: 50%;
   width: min(72%, 530px);
-  aspect-ratio: 1640 / 2360;
+  aspect-ratio: 2064 / 2752;
   border: 8px solid #1b1b1e;
   border-radius: 36px;
   box-shadow: 0 44px 90px rgba(55, 43, 76, .24);
@@ -519,9 +519,9 @@ h3 { font-size: clamp(2rem, 3.5vw, 3.25rem); font-weight: 640; letter-spacing: -
 
 .phone-crop { position: absolute; z-index: 2; margin: 0; overflow: hidden; border: 6px solid #19191c; border-radius: 38px; background: #eeeef2; box-shadow: 0 32px 70px rgba(28, 27, 34, .2); }
 .phone-crop img { width: 100%; height: auto; }
-.phone-create { top: 350px; right: -4%; width: 58%; aspect-ratio: 1206 / 2622; transform: rotate(-3deg); }
-.phone-library { right: 6%; bottom: -33%; width: 44%; aspect-ratio: 1206 / 2622; transform: rotate(3deg); }
-.phone-import { right: 3%; bottom: -45%; width: 34%; aspect-ratio: 1206 / 2622; transform: rotate(2deg); }
+.phone-create { top: 350px; right: -4%; width: 58%; aspect-ratio: 1320 / 2868; transform: rotate(-3deg); }
+.phone-library { right: 6%; bottom: -33%; width: 44%; aspect-ratio: 1320 / 2868; transform: rotate(3deg); }
+.phone-import { right: 3%; bottom: -45%; width: 34%; aspect-ratio: 1320 / 2868; transform: rotate(2deg); }
 
 .widgets {
   position: relative;
@@ -548,7 +548,7 @@ h3 { font-size: clamp(2rem, 3.5vw, 3.25rem); font-weight: 640; letter-spacing: -
 .widget-types { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 30px; }
 .widget-types span { padding: 8px 12px; border: 1px solid var(--line-dark); border-radius: 999px; background: rgba(255, 255, 255, .05); color: #c8c8cc; font-size: .72rem; }
 .widget-stage { position: relative; min-height: 720px; }
-.widget-phone { top: 0; left: 50%; width: min(48%, 335px); aspect-ratio: 1206 / 2622; border: 7px solid #2b2b30; border-radius: 46px; box-shadow: 0 50px 120px rgba(0, 0, 0, .5); transform: translateX(-50%) rotate(-2deg); }
+.widget-phone { top: 0; left: 50%; width: min(48%, 335px); aspect-ratio: 1320 / 2868; border: 7px solid #2b2b30; border-radius: 46px; box-shadow: 0 50px 120px rgba(0, 0, 0, .5); transform: translateX(-50%) rotate(-2deg); }
 
 .widget-card {
   position: absolute;
