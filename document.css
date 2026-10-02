@@ -1,0 +1,58 @@
+/* The same Orbit Down identity, with a quiet reading layout for help and privacy. */
+:root {
+  --ink: #20372b;
+  --ink-soft: #314b3e;
+  --muted: #536357;
+  --paper: #f1eee5;
+  --white: #faf6eb;
+  --pink-deep: #26704f;
+  --line: rgba(39, 66, 45, 0.15);
+}
+html[data-theme="dark"] {
+  --ink: #f5efdf;
+  --ink-soft: #d6dfce;
+  --muted: #b7bdac;
+  --paper: #141714;
+  --white: #1b231e;
+  --pink-deep: #b1e4c7;
+  --line: rgba(213, 222, 200, 0.14);
+}
+html[data-theme] body.info-page {
+  background: var(--paper);
+  color: var(--ink);
+}
+html[data-theme] .info-page .site-header {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: none;
+  border-radius: 0 0 18px 18px;
+}
+html[data-theme] .info-page .content-page > header,
+html[data-theme] .info-page .support-tile,
+html[data-theme] .info-page .summary-table {
+  background: var(--white);
+  border-color: var(--line);
+  box-shadow: none;
+}
+html[data-theme] .info-page .header-cta,
+html[data-theme] .info-page .page-actions .button:first-child {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+  border-radius: 30px;
+}
+html[data-theme] .info-page .page-actions .secondary {
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--line);
+}
+html[data-theme] .info-page .content-page > header {
+  border-radius: 24px;
+}
+.info-page .brand-mark {
+  border-radius: 10px;
+}
+.info-page .content-section a:focus-visible {
+  outline: 2px solid var(--pink-deep);
+  outline-offset: 4px;
+}

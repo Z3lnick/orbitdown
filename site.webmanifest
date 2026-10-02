@@ -4,8 +4,8 @@
   "description": "A private, ad-free countdown app for iPhone, iPad, and Mac.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#121326",
-  "theme_color": "#FF5FA2",
+  "background_color": "#141714",
+  "theme_color": "#b1e4c7",
   "icons": [
     {
       "src": "/assets/app-icon-192.png",

@@ -12,14 +12,21 @@ The `CNAME` file is included for branch-based GitHub Pages publishing. For a sub
 
 ## Production site
 
-The homepage is a zero-build static launch site with:
+The homepage is a zero-build animated experience with:
 
-- responsive desktop and mobile product staging;
-- accessible, reduced-motion-aware scroll reveals;
-- current iPhone, iPad, Mac, and widget product imagery with optimized WebP delivery;
-- an Apple-style editorial design built around the real product rather than mockups;
-- Open Graph, Twitter Card, canonical, manifest, and SoftwareApplication metadata;
-- versioned CSS and JavaScript URLs to prevent stale deployment caches.
+- a real WebGL ribbon sculpture, clock dial and orbital particles using locally vendored Three.js;
+- Anime.js entry choreography, scroll-controlled moment-card assembly and widget transformations;
+- pointer parallax, horizontal scene dragging, an accessible time scrubber and countdown selection;
+- an interactive palette/type/atmosphere playground and curated Quick Add examples;
+- single, upcoming and dashboard website widget previews;
+- explicit motion pause, reduced-motion support, offscreen/background pausing, and a CSS fallback;
+- dark and light themes, responsive layouts, locally served libraries, and the updated app icon;
+- a clean native Mac window capture from the 2 October 2026 local app, with transparent corners and no Codex control overlay, separate from illustrative website demos;
+- coordinated support and privacy colours, existing store links and metadata.
+
+Sources: `index.html`, `orbit.css`, `orbit.js`. Shared help-page styles: `styles.css` and `document.css`. Shared help-page theme behaviour: `site.js`. Library versions and licenses: `assets/vendor/`.
+
+The site remains static GitHub Pages compatible. No Node runtime, build step, analytics, or external animation service is required. JavaScript-free visitors still get the complete story, a static scene, privacy/support links and store downloads. Interactive previews do not create countdowns or install widgets.
 
 The editable 24-second HyperFrames product-film source lives in `hyperframes/orbit-down-launch/`. Its final render is intentionally kept separate from the website release until the visual preview is approved. After approval, run its checks and rebuild the film with:
 

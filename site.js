@@ -21,7 +21,7 @@
     root.style.colorScheme = nextTheme;
 
     const themeColor = document.querySelector('meta[name="theme-color"]');
-    themeColor?.setAttribute("content", nextTheme === "dark" ? "#0b0b10" : "#f5f5f7");
+    themeColor?.setAttribute("content", nextTheme === "dark" ? "#141714" : "#f1eee5");
 
     const nextLabel = `Switch to ${nextTheme === "dark" ? "light" : "dark"} theme`;
     toggles.forEach((toggle) => {
