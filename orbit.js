@@ -11,6 +11,7 @@ const motionButton = document.querySelector(".motion-toggle");
 const instrument = document.querySelector(".instrument");
 const phone = document.querySelector(".scene-phone");
 const scrubber = document.querySelector("#time-scrubber");
+const sceneHint = document.querySelector(".scene-hint");
 const momentButtons = [...document.querySelectorAll("[data-moment]")];
 const moments = [
   { title: "Birthday", days: "06", symbol: "✦", color: "#e7b296" },
@@ -33,6 +34,9 @@ let dragging = false;
 let dragStart = 0;
 let dragValue = 50;
 let clock = null;
+let momentTour = null;
+let manualExploration = false;
+let tourInView = true;
 const loops = [];
 
 function applyTheme(theme, persist = false) {
@@ -78,24 +82,55 @@ function setMoment(index) {
       ease: "outCubic",
     });
 }
-momentButtons.forEach((button, i) =>
+function takeControl() {
+  manualExploration = true;
+  momentTour?.pause();
+  syncMotion();
+}
+momentButtons.forEach((button, i) => {
+  for (const event of ["pointerdown", "focus", "keydown"]) {
+    button.addEventListener(event, takeControl);
+  }
   button.addEventListener("click", () => {
+    takeControl();
     scrubber.value = String(i * 50);
     scrub = (i - 1) * Math.PI * 0.7;
     setMoment(i);
     render();
-  }),
-);
+  });
+});
 function scrubTime(value) {
   scrub = (value / 100 - 0.5) * Math.PI * 1.4;
   const index = value < 33 ? 0 : value > 66 ? 2 : 1;
   if (index !== selectedMoment) setMoment(index);
   render();
 }
-scrubber.addEventListener("input", () => scrubTime(Number(scrubber.value)));
+for (const event of ["pointerdown", "focus", "keydown"]) {
+  scrubber.addEventListener(event, takeControl);
+}
+scrubber.addEventListener("input", () => {
+  takeControl();
+  scrubTime(Number(scrubber.value));
+});
+// Reverse gently at the ends; returning to 50 makes the loop seamless.
+const tourState = { value: 50 };
+momentTour = createTimeline({
+  autoplay: false,
+  loop: true,
+  defaults: { duration: 5000, ease: "inOutSine" },
+  onUpdate() {
+    scrubber.value = String(Math.round(tourState.value));
+    scrubTime(tourState.value);
+  },
+})
+  .add(tourState, { value: 100 }, 3500)
+  .add(tourState, { value: 50 }, 12000)
+  .add(tourState, { value: 0 }, 20500)
+  .add(tourState, { value: 50 }, 29000);
 // Horizontal dragging changes the moment. Vertical gestures remain native scrolling.
 instrument.addEventListener("pointerdown", (event) => {
   if (event.target.closest("button") || event.button !== 0) return;
+  takeControl();
   dragging = true;
   dragStart = event.clientX;
   dragValue = Number(scrubber.value);
@@ -246,6 +281,12 @@ function syncMotion() {
   const canMove = !reducedMotion.matches && !pausedByUser && !document.hidden;
   if (canMove && inView && contextAvailable) clock?.resume();
   else clock?.pause();
+  if (canMove && tourInView && !manualExploration) momentTour?.resume();
+  else momentTour?.pause();
+  sceneHint.textContent =
+    !reducedMotion.matches && !manualExploration && !pausedByUser
+      ? "Watch time move. Drag to explore."
+      : "Drag to explore time";
   loops.forEach(({ animation, element }) => {
     const bounds = element.getBoundingClientRect();
     if (canMove && bounds.bottom > 0 && bounds.top < innerHeight)
@@ -279,6 +320,10 @@ new IntersectionObserver(
   },
   { rootMargin: "80px" },
 ).observe(instrument);
+new IntersectionObserver(([entry]) => {
+  tourInView = entry.isIntersecting;
+  syncMotion();
+}).observe(document.querySelector(".electric-hero"));
 // Scroll-controlled assembly: the scattered moments settle into the library row.
 const lifeCards = [...document.querySelectorAll(".life-card")];
 const libraryAssembly = createTimeline({
@@ -646,6 +691,7 @@ initScene().catch((error) => {
 });
 window.addEventListener("pagehide", () => {
   clock?.pause();
+  momentTour?.pause();
   loops.forEach(({ animation }) => animation.pause());
 });
 window.addEventListener("pageshow", syncMotion);

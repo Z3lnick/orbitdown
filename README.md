@@ -17,6 +17,7 @@ The homepage is a zero-build animated experience with:
 - a real WebGL ribbon sculpture, clock dial and orbital particles using locally vendored Three.js;
 - Anime.js entry choreography, scroll-controlled moment-card assembly and widget transformations;
 - pointer parallax, horizontal scene dragging, an accessible time scrubber and countdown selection;
+- a gentle automatic moment tour with reading pauses, permanent manual control after interaction, and shared motion/accessibility safeguards;
 - an interactive palette/type/atmosphere playground and curated Quick Add examples;
 - single, upcoming and dashboard website widget previews;
 - explicit motion pause, reduced-motion support, offscreen/background pausing, and a CSS fallback;
